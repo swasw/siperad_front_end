@@ -134,7 +134,7 @@
         <div class="login-card">
             <h4 class="mb-4 text-center">LOGIN</h4>
 
-            <form method="POST" action="{{ env('API_BASE_URL', 'https://siperadbackend-production.up.railway.app') }}/login">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
 
                 <div class="form-group">
