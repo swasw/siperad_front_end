@@ -39,18 +39,15 @@
             margin: 0;
             font-family: 'Source Sans Pro', sans-serif;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .bg-cover {
             background: url('{{ asset('admin/assets/images/bg-unj.png') }}') no-repeat center center;
             background-size: cover;
-            height: 100vh;
+            flex: 1;
             width: 100%;
-            display: flex;
-            justify-content: right;
-            /* Horizontal center */
-            align-items: center;
-            /* Vertical center */
             position: relative;
         }
 
@@ -58,29 +55,11 @@
             background: #fff;
             padding: 40px 30px;
             border-radius: 10px;
-            max-width: 300px;
-            height: 400px;
-            width: 100%;
+            max-width: 400px;
+            width: 90%;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 2;
-
-            /* Perubahan posisi */
-            position: relative;
-            top: -30px;
-            /* Naik ke atas */
-            left: -40px;
-            /* Geser ke kiri */
         }
-
-        @media (min-width: 768px) {
-            .login-card {
-                transform: translate(-10px, -20px);
-            }
-        }
-
-        .login-card {
-    transition: transform 0.3s ease-in-out;
-}
 
         .overlay {
             position: absolute;
@@ -94,6 +73,7 @@
             padding: 20px 30px;
             background: #fff;
             border-bottom: 1px solid #ddd;
+            flex-shrink: 0;
         }
 
         .brand-header img {
@@ -147,7 +127,7 @@
         <h5>SIPERAD</h5>
     </div>
 
-    <div class="bg-cover d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="bg-cover d-flex align-items-center justify-content-center">
         <div class="login-card">
             <h4 class="mb-4 text-center">LOGIN</h4>
 
