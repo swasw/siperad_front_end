@@ -49,6 +49,9 @@
             flex: 1;
             width: 100%;
             position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .login-card {
@@ -131,7 +134,7 @@
         <div class="login-card">
             <h4 class="mb-4 text-center">LOGIN</h4>
 
-            <form method="POST" action="{{ route('login') }}">
+            <form method="POST" action="{{ env('API_BASE_URL', 'https://siperadbackend-production.up.railway.app') }}/login">
                 @csrf
 
                 <div class="form-group">
