@@ -290,7 +290,7 @@
 
             function sendSubscriptionToBackEnd(subscription) {
                 @if(Auth::check())
-                fetch('http://127.0.0.1:8000/api/push-subscription/save', {
+                fetch('{{ config('services.backend.url') }}/api/push-subscription/save', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
