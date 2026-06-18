@@ -14,15 +14,15 @@ class JamsTableSeeder extends Seeder
     {
         \Illuminate\Support\Facades\DB::table('jams')->truncate();
         $times = [];
-        $start = strtotime('01:00');
-        $end = strtotime('23:30');
+        $start = strtotime('00:00');
+        $end = strtotime('23:00');
         while ($start <= $end) {
             $times[] = [
-                'jam' => date('H:i', $start),
+                'jam' => date('H:i:s', $start),
                 'created_at' => now(),
                 'updated_at' => now(),
             ];
-            $start += 1800; // 30 minutes
+            $start += 3600; // 1 hour
         }
         \Illuminate\Support\Facades\DB::table('jams')->insert($times);
     }
