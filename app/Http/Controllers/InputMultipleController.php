@@ -230,22 +230,19 @@ class InputMultipleController extends BaseController
                         /**
                          * ======================================
                          * JAM
-                         * jam_mulai
-                         * jam_selesai
+                         * jam
                          * ======================================
                          */
                         case 'Jam':
 
                             if (
-                                empty(trim($row[0] ?? '')) ||
-                                empty(trim($row[1] ?? ''))
+                                empty(trim($row[0] ?? ''))
                             ) {
                                 continue 2;
                             }
 
                             $sheetData[] = [
-                                'jam_mulai'   => trim($row[0]),
-                                'jam_selesai' => trim($row[1]),
+                                'jam' => trim($row[0]),
                             ];
 
                             break;
