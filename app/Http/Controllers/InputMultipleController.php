@@ -16,6 +16,10 @@ class InputMultipleController extends BaseController
 
     public function store(Request $request)
     {
+        // Hapus batas waktu maksimal eksekusi agar proses CURL berulang tidak terkena Time Out (30s)
+        set_time_limit(0);
+        ini_set('max_execution_time', 0);
+
         $request->validate([
             'file' => 'required|mimes:xlsx,xls'
         ]);
