@@ -10,7 +10,7 @@ class NotifikasiController extends BaseController
 {
     public function index()
     {
-        $response = Http::get("{$this->backendUrl}/konfirmasi-ruangan/list/" . Auth::id());
+        $response = Http::get("{$this->backendUrl}/api/konfirmasi-ruangan/list/" . Auth::id());
         $notifikasis = $response->json() ?? [];
 
         return view('user.notifikasi.index', [
@@ -21,7 +21,7 @@ class NotifikasiController extends BaseController
 
     public function jawab(Request $request)
     {
-        $response = Http::post("{$this->backendUrl}/konfirmasi-ruangan/submit", [
+        $response = Http::post("{$this->backendUrl}/api/konfirmasi-ruangan/submit", [
             'jadwal_ruangan_id' => $request->jadwal_ruangan_id,
             'tanggal' => $request->tanggal,
             'status' => $request->status,
@@ -36,7 +36,7 @@ class NotifikasiController extends BaseController
 
     public function adminIndex()
     {
-        $response = Http::get("{$this->backendUrl}/konfirmasi-ruangan/all");
+        $response = Http::get("{$this->backendUrl}/api/konfirmasi-ruangan/all");
         $notifikasis = $response->json() ?? [];
 
         return view('admin.notifikasi.index', [

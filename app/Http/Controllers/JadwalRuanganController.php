@@ -575,19 +575,48 @@ class JadwalRuanganController extends BaseController
             'minggu' => 0,
         ];
 
+        $response = \Illuminate\Support\Facades\Http::get("{$this->backendUrl}/api/konfirmasi-ruangan/all");
+        $allKonfirmasi = $response->json() ?? [];
+        $konfirmasiMap = [];
+        foreach ($allKonfirmasi as $k) {
+            $konfirmasiMap[$k['jadwal_ruangan_id']][$k['tanggal']] = $k['status'];
+        }
+
+        $startDate = now()->startOfMonth();
+        $endDate = now()->addMonths(1)->endOfMonth();
+
         foreach ($jadwal as $j) {
             $hari = strtolower($j->hari);
-            $events[] = [
-                'title' => $j->mata_kuliah ?? 'Jadwal Tetap',
-                'daysOfWeek' => [$dayMap[$hari]],
-                'startTime' => substr($j->jam_mulai, 0, 5),
-                'endTime' => substr($j->jam_selesai, 0, 5),
-                'startRecur' => now()->startOfMonth()->toDateString(),
-                'endRecur' => now()->addMonths(1)->endOfMonth()->toDateString(),
-                'color' => '#3788d8', // biru: jadwal tetap
-                'ruang' => $j->Ruang->nama_ruang ?? '',
-                'prodi' => $j->prodi ?? ''
-            ];
+            $dayOfWeek = $dayMap[$hari] ?? null;
+            if ($dayOfWeek === null) continue;
+
+            $currentDate = $startDate->copy();
+            while ($currentDate->dayOfWeek != ($dayOfWeek == 0 ? \Carbon\Carbon::SUNDAY : $dayOfWeek)) {
+                $currentDate->addDay();
+            }
+
+            while ($currentDate <= $endDate) {
+                $tanggal = $currentDate->toDateString();
+                $status = $konfirmasiMap[$j->id][$tanggal] ?? 'pending';
+
+                if ($status !== 'tidak_dilaksanakan') {
+                    $color = '#3788d8'; // default biru
+                    if ($status === 'dilaksanakan') {
+                        $color = '#28a745'; // hijau jika confirmed yes
+                    }
+
+                    $events[] = [
+                        'title' => $j->mata_kuliah ?? 'Jadwal Tetap',
+                        'start' => $tanggal . 'T' . substr($j->jam_mulai ?? '00:00:00', 0, 5),
+                        'end' => $tanggal . 'T' . substr($j->jam_selesai ?? '00:00:00', 0, 5),
+                        'color' => $color,
+                        'ruang' => $j->Ruang->nama_ruang ?? '',
+                        'prodi' => $j->prodi ?? ''
+                    ];
+                }
+
+                $currentDate->addWeek();
+            }
         }
 
         // Peminjaman Ruangan (non-recurrence, langsung tanggal)
