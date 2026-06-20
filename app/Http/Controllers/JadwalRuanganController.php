@@ -584,7 +584,9 @@ class JadwalRuanganController extends BaseController
                 'endTime' => substr($j->jam_selesai, 0, 5),
                 'startRecur' => now()->startOfMonth()->toDateString(),
                 'endRecur' => now()->addMonths(1)->endOfMonth()->toDateString(),
-                'color' => '#3788d8' // biru: jadwal tetap
+                'color' => '#3788d8', // biru: jadwal tetap
+                'ruang' => $j->Ruang->nama_ruang ?? '',
+                'prodi' => $j->prodi ?? ''
             ];
         }
 
@@ -595,6 +597,8 @@ class JadwalRuanganController extends BaseController
                 'start' => $p->tgl_peminjaman . 'T' . substr($p->jamx->jam, 0, 5),
                 'end' => $p->tgl_peminjaman . 'T' . substr($p->jamy->jam, 0, 5),
                 'color' => '#dc3545', // merah: peminjaman
+                'ruang' => $p->Ruang->nama_ruang ?? '',
+                'prodi' => $p->prodi ?? ''
             ];
         }
 

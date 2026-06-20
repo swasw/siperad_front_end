@@ -180,6 +180,19 @@
                             info.el.style.backgroundColor = '#dc3545';
                         }
                     },
+                    eventContent: function(arg) {
+                        let timeText = arg.timeText; 
+                        let title = arg.event.title; 
+                        let extendedProps = arg.event.extendedProps;
+                        
+                        let ruang = extendedProps.ruang ? ` (${extendedProps.ruang})` : '';
+                        let prodi = extendedProps.prodi ? ` (${extendedProps.prodi})` : '';
+
+                        return {
+                            html: `<div class="fc-event-time">${timeText}${ruang}</div>
+                                   <div class="fc-event-title">${title}${prodi}</div>`
+                        };
+                    },
                     slotMinTime: "00:00:00",
                     slotMaxTime: "24:00:00",
                     slotDuration: "01:00:00",
