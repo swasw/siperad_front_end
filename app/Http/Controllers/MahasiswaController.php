@@ -194,7 +194,8 @@ class MahasiswaController extends BaseController
             'prodi_id' => $request->prodi_id,
             'angkatan_id' => $request->angkatan_id,
             'type' => $request->type,
-            'password' => $request->password
+            'password' => $request->password,
+            'no_telfon' => $request->no_telfon
         ];
 
         $client = curl_init();
@@ -268,6 +269,7 @@ class MahasiswaController extends BaseController
             'username' => $request->username,
             'prodi_id' => $request->prodi_id,
             'angkatan_id' => $request->angkatan_id,
+            'no_telfon' => $request->no_telfon,
         ];
 
         $client = curl_init();

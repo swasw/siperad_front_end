@@ -71,6 +71,11 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group mb-2">
+                            <label for="no_telfon">Nomor Telepon (Opsional)</label>
+                            <input type="text" class="form-control" name="no_telfon" value="{{ $data['no_telfon'] ?? '' }}"
+                                id="no_telfon" placeholder="Contoh: 08123456789">
+                        </div>
                         <button type="submit" class="btn btn-primary">Ubah</button>
                     </form>
                 </div>

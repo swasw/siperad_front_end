@@ -27,6 +27,7 @@ class User extends Authenticatable
         'prodi_id',
         'password',
         'type',
+        'no_telfon',
     ];
 
     /**
