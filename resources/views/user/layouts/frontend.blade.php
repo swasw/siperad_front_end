@@ -94,6 +94,7 @@
                             <span class="menu-title">Kehadiran Dosen</span>
                         </a>
                     </li>
+                    @if(auth()->user() && auth()->user()->username !== 'guest')
                     <li class="drop-down {{ request()->routeIs('user.historypeminjamanalat', 'user.historypeminjamanruang') ? 'active' : '' }}">
                         <a href="#"><span class="menu-title">Status</span></a>
                         <ul>
@@ -110,6 +111,7 @@
                             <span class="menu-title">Konfirmasi Ruangan</span>
                         </a>
                     </li>
+                    @endif
 
                     <li class="drop-down"><a href="#">
                             @php
@@ -118,8 +120,10 @@
                             @endphp
                             {{ $firstName }}</a>
                         <ul>
+                            @if(auth()->user() && auth()->user()->username !== 'guest')
                             <li><a href=" {{ route('view.feedback') }}">Feedback</a></li>
                             <li><a href=" {{ route('view.change.pass') }}">Ubah Password</a></li>
+                            @endif
                             <li>
                                 <a href="#"
                                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -340,6 +344,11 @@
                 }
             }
 
+            @if(auth()->user() && auth()->user()->username === 'guest')
+                // Guest bypasses notification check
+                blocker.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            @else
             if ('Notification' in window) {
                 checkPermission();
                 
@@ -378,6 +387,7 @@
                 btn.style.display = 'none';
                 alert("Browser Anda tidak mendukung notifikasi. Gunakan Google Chrome versi terbaru.");
             }
+            @endif
         });
     </script>
 </body>

@@ -46,6 +46,8 @@ Route::controller(ResetController::class)->group(function () {
     Route::post('user/post/request', 'postRequest')->name('user.post.request');
 });
 
+Route::post('/login/guest', [\App\Http\Controllers\Auth\LoginController::class, 'guestLogin'])->name('guest.login');
+
 Auth::routes();
 
 Route::middleware(['auth', 'user-access:0'])->group(function () {

@@ -117,4 +117,25 @@ class LoginController extends Controller
                 ]);
         }
     }
+
+    public function guestLogin(Request $request)
+    {
+        $guestUser = \App\Models\User::firstOrCreate(
+            ['username' => 'guest'],
+            [
+                'name' => 'Guest',
+                'email' => 'guest@unj.ac.id',
+                'password' => \Illuminate\Support\Facades\Hash::make('guest12345'),
+                'type' => 0,
+            ]
+        );
+
+        auth()->login($guestUser);
+
+        return redirect()->route('user.home')->with('alert', [
+            'title' => 'Login Berhasil',
+            'text' => 'Anda masuk sebagai Guest.',
+            'icon' => 'success'
+        ]);
+    }
 }

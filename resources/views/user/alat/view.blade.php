@@ -34,7 +34,11 @@
                                 </p>
                             </div>
                             <div class="card-footer bg-white text-end">
-                                @if ($alat['stok'] > 0 && $alat['status_barang'] == '1')
+                                @if (auth()->user()->username === 'guest')
+                                    <button class="btn btn-sm btn-secondary" disabled title="Hubungi Admin Prodi untuk Meminjam">
+                                        View Only (Hubungi Admin)
+                                    </button>
+                                @elseif ($alat['stok'] > 0 && $alat['status_barang'] == '1')
                                     <a href="{{ route('user.formpeminjamanalat', ['alat_id' => $alat['id']]) }}"
                                         class="btn btn-sm btn-primary">
                                         Pinjam Sekarang

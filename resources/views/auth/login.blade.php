@@ -168,11 +168,18 @@
                 <br>
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">{{ __('Login') }}</button>
-
-                <a class="btn btn-link reset-link" href="{{ route('user.request') }}">
-                    {{ __('Reset Password?') }}
-                </a>
             </form>
+
+            <form method="POST" action="{{ route('guest.login') }}" class="mt-3">
+                @csrf
+                <button type="submit" class="btn btn-secondary btn-lg btn-block" style="background-color: #6c757d; border: none;">
+                    Masuk Sebagai Guest
+                </button>
+            </form>
+
+            <a class="btn btn-link reset-link mt-3" href="{{ route('user.request') }}">
+                {{ __('Reset Password?') }}
+            </a>
         </div>
     </div>
 </body>
