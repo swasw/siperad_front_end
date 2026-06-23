@@ -337,7 +337,7 @@ class InputMultipleController extends BaseController
                         $endpoint = '/api/jam/post';
                         break;
                     case 'jadwal_ruangan':
-                        $endpoint = '/api/jadwal-ruangan/post';
+                        $endpoint = '/api/jadwalruang/post';
                         break;
                 }
 
@@ -364,6 +364,8 @@ class InputMultipleController extends BaseController
                             $successCount++;
                         } else {
                             $errorCount++;
+                            // Log the error for debugging
+                            \Log::error("Upload failed for {$tableName}. HTTP Code: {$httpCode}. Response: {$response}. Data: " . json_encode($postData));
                         }
                     }
 
