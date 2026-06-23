@@ -50,7 +50,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $d['nama_ruang'] ?? '-' }}</td>
-                                    <td>{{ $d['keterangan'] ?? '-' }}</td>
+                                    <td>{{ empty($d['keterangan']) ? 'None' : $d['keterangan'] }}</td>
                                     <td>
                                         @if ($d['status_ruang'] == 1)
                                             <button class="btn btn-sm btn-success" disabled>Tersedia</button>

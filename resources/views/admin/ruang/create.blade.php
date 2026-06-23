@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group mb-2">
                             <label for="keterangan">Keterangan Ruang</label>
-                            <input type="text" class="form-control" name="keterangan" id="keterangan" required>
+                            <input type="text" class="form-control" name="keterangan" id="keterangan">
                         </div>
                         <div class="form-group mb-2">
                             <label for="">Status Ruang</label>

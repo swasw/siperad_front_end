@@ -43,7 +43,7 @@
                         <div class="form-group mb-2">
                             <label for="keterangan">Keterangan Ruang</label>
                             <input type="text" class="form-control" name="keterangan" value="{{ $data['keterangan'] }}"
-                                id="keterangan" required>
+                                id="keterangan">
                         </div>
                         <div class="form-group mb-2">
                             <label for="">Status Ruang</label>

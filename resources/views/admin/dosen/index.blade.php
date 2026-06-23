@@ -32,7 +32,6 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Nama Dosen</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -41,7 +40,6 @@
                         <tbody>
                             @foreach ($data as $d)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $d['nama_dosen'] }}</td>
                                     <td>
                                         @if ($d['kehadiran_dosen'] == '1')

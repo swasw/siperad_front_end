@@ -247,6 +247,48 @@ class InputMultipleController extends BaseController
 
                             break;
 
+                        /**
+                         * ======================================
+                         * JADWAL RUANGAN
+                         * ======================================
+                         */
+                        case 'jadwal_ruangan':
+                            if (
+                                empty(trim($row[0] ?? '')) ||
+                                empty(trim($row[1] ?? '')) ||
+                                empty(trim($row[2] ?? '')) ||
+                                empty(trim($row[3] ?? '')) ||
+                                empty(trim($row[4] ?? '')) ||
+                                empty(trim($row[5] ?? '')) ||
+                                empty(trim($row[6] ?? '')) ||
+                                empty(trim($row[7] ?? ''))
+                            ) {
+                                continue 2;
+                            }
+
+                            // Cari ID ruang berdasarkan nama_ruang
+                            $namaRuang = trim($row[0]);
+                            $ruang = \App\Models\Ruang::where('nama_ruang', $namaRuang)->first();
+                            if (!$ruang) {
+                                continue 2; // Jika ruang tidak ada di DB, skip
+                            }
+
+                            $sheetData[] = [
+                                'ruang_id'       => $ruang->id,
+                                'mata_kuliah'    => trim($row[1]),
+                                'dosen'          => trim($row[2]),
+                                'hari'           => ucfirst(strtolower(trim($row[3]))),
+                                'jam_mulai_ke'   => (int) trim($row[4]),
+                                'jam_selesai_ke' => (int) trim($row[5]),
+                                'prodi'          => trim($row[6]),
+                                'angkatan'       => trim($row[7]),
+                                'kelas'          => trim($row[8] ?? ''), // optional
+                                'status_ruang'   => 1, // otomatis 1 (tersedia)
+                                'user_id'        => null,
+                            ];
+
+                            break;
+
                         default:
                             break;
                     }
@@ -293,6 +335,9 @@ class InputMultipleController extends BaseController
                         break;
                     case 'Jam':
                         $endpoint = '/api/jam/post';
+                        break;
+                    case 'jadwal_ruangan':
+                        $endpoint = '/api/jadwal-ruangan/post';
                         break;
                 }
 
