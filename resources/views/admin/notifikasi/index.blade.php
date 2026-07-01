@@ -37,7 +37,7 @@
                                 <td>{{ $notif['jadwal_ruangan']['ruang']['nama_ruang'] ?? '-' }}</td>
                                 <td><span class="badge bg-info text-dark">{{ \Carbon\Carbon::parse($notif['tanggal'])->translatedFormat('d M Y') }}</span></td>
                                 <td>{{ ucfirst($notif['jadwal_ruangan']['hari'] ?? '-') }}, {{ substr($notif['jadwal_ruangan']['jam_mulai'] ?? '00:00', 0, 5) }} - {{ substr($notif['jadwal_ruangan']['jam_selesai'] ?? '00:00', 0, 5) }}</td>
-                                <td>{{ $notif['jadwal_ruangan']['user']['name'] ?? 'Tidak Ada PJ' }}</td>
+                                <td>{{ $notif['jadwal_ruangan']['penanggungjawab']['name'] ?? $notif['jadwal_ruangan']['dosen'] ?? 'Tidak Ada PJ' }}</td>
                                 <td>
                                     @if($notif['status'] === 'pending')
                                         <span class="badge bg-warning text-dark"><i class="fas fa-clock"></i> Pending (Belum Dijawab)</span>

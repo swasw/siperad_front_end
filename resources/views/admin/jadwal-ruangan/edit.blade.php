@@ -59,19 +59,19 @@
                         <div class="form-group mb-2">
                             <label for="hari">Hari</label>
                             <select name="hari" data-placeholder="Pilih Hari" class="form-select form-select-solid">
-                                <option value="senin" <?php if ($data['hari'] == 'senin') {
+                                <option value="Senin" <?php if (strtolower($data['hari']) == 'senin') {
                                     echo 'selected';
                                 } ?>>Senin</option>
-                                <option value="selasa" <?php if ($data['hari'] == 'selasa') {
+                                <option value="Selasa" <?php if (strtolower($data['hari']) == 'selasa') {
                                     echo 'selected';
                                 } ?>>Selasa</option>
-                                <option value="rabu" <?php if ($data['hari'] == 'rabu') {
+                                <option value="Rabu" <?php if (strtolower($data['hari']) == 'rabu') {
                                     echo 'selected';
                                 } ?>>Rabu</option>
-                                <option value="kamis" <?php if ($data['hari'] == 'kamis') {
+                                <option value="Kamis" <?php if (strtolower($data['hari']) == 'kamis') {
                                     echo 'selected';
                                 } ?>>Kamis</option>
-                                <option value="jumat" <?php if ($data['hari'] == 'jumat') {
+                                <option value="Jumat" <?php if (strtolower($data['hari']) == 'jumat') {
                                     echo 'selected';
                                 } ?>>Jumat</option>
                             </select>

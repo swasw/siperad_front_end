@@ -55,7 +55,7 @@
                 </a>
                 <a class="nav-link" href="{{ route('angkatan.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
-                    Angkatan flags
+                    Angkatan
                 </a>
                 <div class="collapse" id="collapseLayouts4" aria-labelledby="headingOne"
                     data-bs-parent="#sidenavAccordion">

@@ -54,11 +54,11 @@
                         <div class="form-group mb-2">
                             <label for="hari">Hari</label>
                             <select name="hari" data-placeholder="Pilih Hari" class="form-select form-select-solid">
-                                <option value="senin">Senin</option>
-                                <option value="selasa">Selasa</option>
-                                <option value="rabu">Rabu</option>
-                                <option value="kamis">Kamis</option>
-                                <option value="jumat">Jumat</option>
+                                <option value="Senin">Senin</option>
+                                <option value="Selasa">Selasa</option>
+                                <option value="Rabu">Rabu</option>
+                                <option value="Kamis">Kamis</option>
+                                <option value="Jumat">Jumat</option>
                             </select>
                         </div>
 
