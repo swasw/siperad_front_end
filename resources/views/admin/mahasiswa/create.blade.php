@@ -6,7 +6,7 @@
             <h1 class="mt-4">{{ $title }}</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><a href="{{ route('admin.home') }}">Dashboard</a> > <a
-                        href="{{ route('mahasiswa.index') }}">Data Mahasiswa</a> > {{ $title }}</li>
+                        href="{{ route('mahasiswa.index') }}">Data User</a> > {{ $title }}</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
@@ -36,11 +36,11 @@
                         @csrf
 
                         <div class="form-group mb-2">
-                            <label for="nama_mahasiswa">Nama Mahasiswa</label>
+                            <label for="nama_mahasiswa">Nama User</label>
                             <input type="text" class="form-control" name="name" id="name">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="username">NIM</label>
+                            <label for="username">Username/NIM</label>
                             <input type="text" class="form-control" name="username" id="username">
                         </div>
                         <div class="form-group mb-2">
@@ -71,7 +71,13 @@
                         </div>
 
 
-                        <input type="hidden" class="form-control" name="type" value="0">
+                        <div class="form-group mb-2">
+                            <label for="type">Tipe User</label>
+                            <select class="form-select" name="type" id="type">
+                                <option value="0">General</option>
+                                <option value="1">Admin</option>
+                            </select>
+                        </div>
 
 
                         <button type="submit" class="btn btn-primary">Tambah</button>

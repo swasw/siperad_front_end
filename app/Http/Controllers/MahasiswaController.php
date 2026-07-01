@@ -169,7 +169,7 @@ class MahasiswaController extends BaseController
         // $data = json_decode($response, true);
         // dd($data);
         return view('admin/mahasiswa/index', [
-            'title' => 'Data Mahasiswa',
+            'title' => 'Data User',
             'data' => $data
         ]);
     }
@@ -180,7 +180,7 @@ class MahasiswaController extends BaseController
         $angkatan = Angkatan::all();
 
         return view('admin/mahasiswa/create', [
-            'title' => 'Tambah Data Mahasiswa',
+            'title' => 'Tambah Data User',
             'prodi' => $prodi,
             'angkatan' => $angkatan
         ]);
@@ -254,7 +254,7 @@ class MahasiswaController extends BaseController
         $angkatan = Angkatan::all();
 
         return view('admin/mahasiswa/edit', [
-            'title' => 'Edit Data Mahasiswa',
+            'title' => 'Edit Data User',
             'data' => $data,
             'prodi' => $prodi,
             'angkatan' => $angkatan,

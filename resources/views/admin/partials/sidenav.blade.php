@@ -66,7 +66,7 @@
                 </div>
                 <a class="nav-link" href="{{ route('mahasiswa.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>
-                    Mahasiswa
+                    Data User
                 </a>
                 <a class="nav-link" href="{{ route('feedback.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-box"></i></div>

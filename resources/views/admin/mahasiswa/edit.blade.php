@@ -6,7 +6,7 @@
             <h1 class="mt-4">{{ $title }}</h1>
             <ol class="breadcrumb mb-4">
                 <li class="breadcrumb-item active"><a href="{{ route('admin.home') }}">Dashboard</a> > <a
-                        href="{{ route('mahasiswa.index') }}">Data Mahasiswa</a> > {{ $title }}</li>
+                        href="{{ route('mahasiswa.index') }}">Data User</a> > {{ $title }}</li>
             </ol>
             <div class="card mb-4">
                 <div class="card-body">
@@ -40,12 +40,12 @@
                                 value="{{ $data['id'] }}">
                         </div>
                         <div class="form-group mb-2">
-                            <label for="name">Nama Mahasiswa</label>
+                            <label for="name">Nama User</label>
                             <input type="text" class="form-control" name="name" value="{{ $data['name'] }}"
                                 id="name" required>
                         </div>
                         <div class="form-group mb-2">
-                            <label for="username">NIM</label>
+                            <label for="username">Username/NIM</label>
                             <input type="text" class="form-control" name="username" value="{{ $data['username'] }}"
                                 id="username" required>
                         </div>

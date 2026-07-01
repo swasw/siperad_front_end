@@ -33,11 +33,12 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Nama Mahasiswa</th>
+                                <th>Nama User</th>
                                 <th>Username</th>
                                 <th>No Telepon</th>
                                 <th>Prodi</th>
                                 <th>Angkatan</th>
+                                <th>Jenis User</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -50,13 +51,13 @@
                                     <td>{{ $d['no_telfon'] ?? 'Belum ada' }}</td>
                                     <td>{{ $d['prodi']['nama_prodi'] ?? '-' }}</td>
                                     <td>{{ $d['angkatan']['angkatan'] ?? '-' }}</td>
-                                    {{-- <td>
-                                        @if ($d->type == 1)
-                                            <button class="btn btn-sm btn-success" disabled>Tersedia</button>
+                                    <td>
+                                        @if ($d['type'] == 1 || $d['type'] === '1' || $d['type'] === 'admin')
+                                            <span class="badge bg-primary">Admin</span>
                                         @else
-                                            <button class="btn btn-sm btn-secondary" disabled>Tidak Tersedia</button>
+                                            <span class="badge bg-secondary">General</span>
                                         @endif
-                                    </td> --}}
+                                    </td>
 
                                     <td>
                                         <a href="{{ route('mahasiswa.destroy', $d['id']) }}" class="btn btn-sm btn-danger"
