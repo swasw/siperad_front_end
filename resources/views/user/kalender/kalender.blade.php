@@ -27,6 +27,7 @@
                         </option>
                     @endforeach
                 </select>
+                <button type="button" class="btn btn-primary btn-sm ms-2" onclick="showPeminjamanModalManual()">Ajukan Peminjaman</button>
             </form>
             <div id='calendar'></div>
         </div>
@@ -51,6 +52,11 @@
                                 <label class="form-label">Nama Peminjam</label>
                                 <input type="text" name="nama_peminjam" class="form-control"
                                     value="{{ old('nama_peminjam', auth()->user()->name) }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Nomor Telfon (WA)</label>
+                                <input type="text" name="no_telfon" class="form-control"
+                                    value="{{ old('no_telfon') }}" placeholder="Contoh: 081234567890" required>
                             </div>
                             <div class="mb-3">
                                 <label for="mata_kuliah" class="form-label">Mata Kuliah</label>
@@ -227,6 +233,17 @@
                 margin: 0 auto;
             }
         </style>
+
+        <script>
+            function showPeminjamanModalManual() {
+                // Set to current date as default
+                const now = new Date();
+                const dateStr = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0');
+                document.getElementById('tgl_peminjaman').value = dateStr;
+                const modal = new bootstrap.Modal(document.getElementById('peminjamanModal'));
+                modal.show();
+            }
+        </script>
 
         <!-- Alerts & Modal Show Logic -->
         @if (session('alert'))

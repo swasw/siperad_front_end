@@ -506,8 +506,11 @@ class PeminjamanRuangController extends BaseController
             'jam_mulai_id',
             'jam_selesai_id',
             'prodi',
-            'angkatan'
+            'angkatan',
+            'no_telfon'
         ]);
+
+        $postData['user_id'] = auth()->id();
 
         $client = curl_init();
         curl_setopt_array($client, [
