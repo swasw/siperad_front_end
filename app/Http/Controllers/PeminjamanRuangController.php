@@ -447,7 +447,8 @@ class PeminjamanRuangController extends BaseController
             ]);
         } else {
             $filteredData = array_filter($data, function ($item) {
-                return strtolower($item['nama_peminjam']) == strtolower(auth()->user()->name);
+                return (isset($item['user_id']) && $item['user_id'] == auth()->id()) || 
+                       strtolower($item['nama_peminjam']) == strtolower(auth()->user()->name);
             });
             return view('user.data.peminjamanruang', [
                 'data' => $filteredData
