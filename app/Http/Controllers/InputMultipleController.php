@@ -170,9 +170,9 @@ class InputMultipleController extends BaseController
                         /**
                          * ======================================
                          * ALAT
-                         * nama_alat
-                         * stok
-                         * status_alat
+                         * nama_barang (A)
+                         * deskripsi_barang (B)
+                         * stok (C)
                          * ======================================
                          */
                         case 'Alat':
@@ -184,9 +184,10 @@ class InputMultipleController extends BaseController
                             }
 
                             $sheetData[] = [
-                                'nama_barang'   => trim($row[0]),
-                                'stok'          => (int) trim($row[1] ?? 0),
-                                'status_barang' => (int) trim($row[2] ?? 0),
+                                'nama_barang'      => trim($row[0]),
+                                'deskripsi_barang' => trim($row[1] ?? '-'),
+                                'stok'             => (int) trim($row[2] ?? 0),
+                                'status_barang'    => trim($row[3] ?? '') !== '' ? (int) trim($row[3]) : 1,
                             ];
 
                             break;
