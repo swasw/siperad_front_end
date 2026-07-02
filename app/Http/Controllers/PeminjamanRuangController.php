@@ -546,16 +546,9 @@ class PeminjamanRuangController extends BaseController
             }
         } else {
             $error = json_decode($response, true);
-            return redirect()->back()->withErrors($error['errors'])->withInput();
+            $errorMessages = isset($error['errors']) ? $error['errors'] : ['server_error' => ['Terjadi kesalahan pada server (Backend error). Pastikan Backend sudah di-deploy dan di-migrate.']];
+            return redirect()->back()->withErrors($errorMessages)->withInput();
         }
-
-        // if ($httpCode == 201) {
-        //     Alert::success('Berhasil', 'Peminjaman berhasil ditambahkan');
-        //     return redirect()->route('peminjaman-ruang.index');
-        // } else {
-        //     $error = json_decode($response, true);
-        //     return redirect()->back()->withErrors($error['errors'] ?? ['Terjadi kesalahan'])->withInput();
-        // }
     }
 
     public function edit($id)
