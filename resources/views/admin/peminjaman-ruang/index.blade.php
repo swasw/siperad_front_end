@@ -37,9 +37,9 @@
                     <table id="datatablesSimple">
                         <thead>
                             <tr>
-                                <th>No</th>
                                 <th>Tgl Peminjaman</th>
                                 <th>Nama Peminjam</th>
+                                <th>Username</th>
                                 <th>No Telfon</th>
                                 <th>Mata Kuliah</th>
                                 <th>Jam Mulai</th>
@@ -55,9 +55,9 @@
                         <tbody>
                             @foreach ($data as $d)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $d['tgl_peminjaman'] }}</td>
                                     <td>{{ $d['nama_peminjam'] }}</td>
+                                    <td>{{ $d['user']['name'] ?? '-' }}</td>
                                     <td>{{ $d['no_telfon'] ?? '-' }}</td>
                                     <td>{{ $d['mata_kuliah'] ?? '-' }}</td>
                                     <td>{{ substr($d['jamx']['jam'] ?? '00:00', 0, 5) }}</td>
