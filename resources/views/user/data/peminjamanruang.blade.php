@@ -6,6 +6,11 @@
             </br></br>
             <h3 class="panel-title text-center mb-4">Data Peminjaman Ruang</h3>
 
+            <div class="alert alert-info text-center" role="alert">
+                <strong>Pengingat:</strong> Silakan hubungi Admin Ruangan untuk mengkonfirmasi peminjaman ruangan Anda.<br>
+                Admin Pak BANI (Lantai 5): <strong>081808956573</strong> &nbsp; | &nbsp; Admin Pak WISNU (Lantai 6): <strong>082113419233</strong>
+            </div>
+
             {{-- Tabel Responsif --}}
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover table-sm">
