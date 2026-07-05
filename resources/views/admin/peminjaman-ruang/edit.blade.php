@@ -61,6 +61,10 @@
                                 value="{{ $data['nama_peminjam'] }}" id="nama_peminjam" required>
                         </div>
                         <div class="form-group mb-2">
+                            <label for="no_telfon">No Telfon</label>
+                            <input type="text" class="form-control" name="no_telfon" id="no_telfon" placeholder="No Telfon / WhatsApp" value="{{ $data['no_telfon'] ?? '' }}" required>
+                        </div>
+                        <div class="form-group mb-2">
                             <label for="mata_kuliah">Mata Kuliah</label>
                             <input type="text" class="form-control" name="mata_kuliah" id="mata_kuliah" placeholder="Mata Kuliah" value="{{ $data['mata_kuliah'] ?? '' }}" required>
                         </div>

@@ -606,7 +606,8 @@ class PeminjamanRuangController extends BaseController
             'jam_mulai_id',
             'jam_selesai_id',
             'prodi',
-            'angkatan'
+            'angkatan',
+            'no_telfon'
         ]);
 
         $client = curl_init();
