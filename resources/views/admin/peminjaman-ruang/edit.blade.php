@@ -71,6 +71,7 @@
                         <div class="form-group mb-2">
                             <label for="jam_mulai_id">Jam Mulai</label>
                             <select class="form-select" name="jam_mulai_id">
+                                <option value="" disabled {{ !$data['jam_mulai_id'] ? 'selected' : '' }}>-- Pilih Jam Mulai --</option>
                                 @foreach ($jam as $jm)
                                     <option value="{{ $jm->id }}"
                                         {{ $jm->id == $data['jam_mulai_id'] ? 'selected' : '' }}>
@@ -89,6 +90,7 @@
                         <div class="form-group mb-2">
                             <label for="jam_selesai_id">Jam Selesai</label>
                             <select class="form-select" name="jam_selesai_id">
+                                <option value="" disabled {{ !$data['jam_selesai_id'] ? 'selected' : '' }}>-- Pilih Jam Selesai --</option>
                                 @foreach ($jam as $jm)
                                     <option value="{{ $jm->id }}"
                                         {{ $jm->id == $data['jam_selesai_id'] ? 'selected' : '' }}>
@@ -119,6 +121,7 @@
                         <div class="form-group mb-2">
                             <label for="ruang_id">Nama Ruang</label>
                             <select class="form-select" name="ruang_id">
+                                <option value="" disabled {{ !$data['ruang_id'] ? 'selected' : '' }}>-- Pilih Ruangan --</option>
                                 @foreach ($ruang as $r)
                                     <option value="{{ $r->id }}"
                                         {{ $r->id == $data['ruang_id'] ? 'selected' : '' }}>

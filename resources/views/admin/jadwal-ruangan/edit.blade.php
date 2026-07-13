@@ -39,6 +39,7 @@
                         <div class="form-group mb-2">
                             <label for="ruang_id">Nama Ruang</label>
                             <select class="form-select" name="ruang_id">
+                                <option value="" disabled {{ !$data['ruang_id'] ? 'selected' : '' }}>-- Pilih Ruangan --</option>
                                 @foreach ($ruang as $r)
                                     <option value="{{ $r->id }}"
                                         {{ $r->id == $data['ruang_id'] ? 'selected' : '' }}>

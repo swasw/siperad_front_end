@@ -59,11 +59,11 @@
                                     <td>{{ $d['nama_peminjam'] }}</td>
                                     <td>{{ $d['nim'] }}</td>
                                     <td>{{ $d['no_hp'] }}</td>
-                                    <td>{{ $d['prodi']['nama_prodi'] }}</td>
-                                    <td>{{ $d['angkatan']['angkatan'] }}</td>
-                                    <td>{{ $d['matkul']['mata_kuliah'] }}</td>
-                                    <td>{{ $d['dosen']['nama_dosen'] }}</td>
-                                    <td>{{ $d['barang']['nama_barang'] }}</td>
+                                    <td>{{ $d['prodi']['nama_prodi'] ?? 'Data Terhapus' }}</td>
+                                    <td>{{ $d['angkatan']['angkatan'] ?? 'Data Terhapus' }}</td>
+                                    <td>{{ $d['matkul']['mata_kuliah'] ?? 'Data Terhapus' }}</td>
+                                    <td>{{ $d['dosen']['nama_dosen'] ?? 'Data Terhapus' }}</td>
+                                    <td>{{ $d['barang']['nama_barang'] ?? 'Data Terhapus' }}</td>
                                     <td>
                                         @if ($d['status_peminjaman'] == 1)
                                             <button class="btn btn-sm btn-success" disabled>Sudah dikembalikan</button>

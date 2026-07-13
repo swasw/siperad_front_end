@@ -60,7 +60,7 @@
                                 <tr>
 
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $d['ruang']['nama_ruang'] }}</td>
+                                    <td>{{ $d['ruang']['nama_ruang'] ?? 'Data Terhapus' }}</td>
                                     <td>{{ $d['mata_kuliah'] }}</td>
                                     <td>{{ $d['dosen'] }}</td>
                                     <td>{{ $d['prodi'] }}</td>

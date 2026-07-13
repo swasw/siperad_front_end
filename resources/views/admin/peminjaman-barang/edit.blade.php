@@ -73,6 +73,7 @@
                         <div class="form-group mb-2">
                             <label for="prodi_id">Prodi</label>
                             <select class="form-select" name="prodi_id">
+                                <option value="" disabled {{ !$data['prodi_id'] ? 'selected' : '' }}>-- Pilih Prodi --</option>
                                 @foreach ($prodi as $p)
                                     <option value="{{ $p->id }}"
                                         {{ $p->id == $data['prodi_id'] ? 'selected' : '' }}>
@@ -91,6 +92,7 @@
                         <div class="form-group mb-2">
                             <label for="angkatan_id">Angkatan</label>
                             <select class="form-select" name="angkatan_id">
+                                <option value="" disabled {{ !$data['angkatan_id'] ? 'selected' : '' }}>-- Pilih Angkatan --</option>
                                 @foreach ($angkatan as $a)
                                     <option value="{{ $a->id }}"
                                         {{ $a->id == $data['angkatan_id'] ? 'selected' : '' }}>
@@ -109,6 +111,7 @@
                         <div class="form-group mb-2">
                             <label for="matkul_id">Mata Kuliah</label>
                             <select class="form-select" name="matkul_id">
+                                <option value="" disabled {{ !$data['matkul_id'] ? 'selected' : '' }}>-- Pilih Mata Kuliah --</option>
                                 @foreach ($matkul as $m)
                                     <option value="{{ $m->id }}"
                                         {{ $m->id == $data['matkul_id'] ? 'selected' : '' }}>
@@ -127,6 +130,7 @@
                         <div class="form-group mb-2">
                             <label for="dosen_id">Nama Dosen</label>
                             <select class="form-select" name="dosen_id">
+                                <option value="" disabled {{ !$data['dosen_id'] ? 'selected' : '' }}>-- Pilih Dosen --</option>
                                 @foreach ($dosen as $d)
                                     <option value="{{ $d->id }}"
                                         {{ $d->id == $data['dosen_id'] ? 'selected' : '' }}>
@@ -145,6 +149,7 @@
                         <div class="form-group mb-2">
                             <label for="barang_id">Nama Alat</label>
                             <select class="form-select" name="barang_id">
+                                <option value="" disabled {{ !$data['barang_id'] ? 'selected' : '' }}>-- Pilih Alat --</option>
                                 @foreach ($barang as $b)
                                     <option value="{{ $b->id }}"
                                         {{ $b->id == $data['barang_id'] ? 'selected' : '' }}>
