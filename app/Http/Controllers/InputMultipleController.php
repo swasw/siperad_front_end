@@ -285,10 +285,7 @@ class InputMultipleController extends BaseController
             }
 
             if (empty($payload)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Tidak ada data valid yang ditemukan di Excel'
-                ], 400);
+                return redirect()->back()->with('error', 'Tidak ada data valid yang ditemukan di Excel. Pastikan file terisi dengan benar.');
             }
 
             // ==========================================
@@ -368,10 +365,7 @@ class InputMultipleController extends BaseController
 
         } catch (\Exception $e) {
 
-            return response()->json([
-                'success' => false,
-                'message' => $e->getMessage()
-            ], 500);
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $e->getMessage());
         }
     }
 }
