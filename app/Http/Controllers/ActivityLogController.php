@@ -11,6 +11,7 @@ class ActivityLogController extends Controller
     {
         // Get logs ordered by latest
         $logs = ActivityLog::orderBy('created_at', 'desc')->get();
-        return view('admin.activity-log.index', compact('logs'));
+        $title = 'Activity Log';
+        return view('admin.activity-log.index', compact('logs', 'title'));
     }
 }
