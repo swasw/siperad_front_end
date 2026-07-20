@@ -13,6 +13,7 @@ use App\Models\Ruang;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 
 class PeminjamanRuangController extends BaseController
 {
@@ -631,6 +632,9 @@ class PeminjamanRuangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            if (auth()->user()->type == '1') {
+                ActivityLog::logAction(auth()->user()->name, 'Mengubah data peminjaman ruang: <b>' . $request->nama_peminjam . '</b>');
+            }
             Alert::success('Berhasil', 'Peminjaman berhasil diubah');
             return redirect()->route('peminjaman-ruang.index');
         } else {
@@ -663,6 +667,9 @@ class PeminjamanRuangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            if (auth()->user()->type == '1') {
+                ActivityLog::logAction(auth()->user()->name, 'Menghapus peminjaman ruang ID: <b>' . $id . '</b>');
+            }
             Alert::success('Berhasil', 'Peminjaman berhasil dihapus');
         } else {
             Alert::error('Gagal', 'Peminjaman gagal dihapus');
@@ -697,6 +704,9 @@ class PeminjamanRuangController extends BaseController
 
         if ($httpCode == 200) {
             $statusText = $request->status_peminjaman == 1 ? 'disetujui' : 'ditolak';
+            if (auth()->user()->type == '1') {
+                ActivityLog::logAction(auth()->user()->name, 'Mengubah status peminjaman ruang ID <b>' . $id . '</b> menjadi: ' . $statusText);
+            }
             Alert::success('Berhasil', "Peminjaman berhasil $statusText!");
         } else {
             $decoded = json_decode($response, true);

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Prodi;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreProdiRequest;
@@ -181,6 +182,7 @@ class ProdiController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data prodi: <b>' . $request->nama_prodi . '</b>');
             Alert::success('Berhasil', 'Prodi Berhasil Ditambahkan');
             return redirect()->route('prodi.index');
         } else {
@@ -246,6 +248,7 @@ class ProdiController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data prodi: <b>' . $request->nama_prodi . '</b>');
             Alert::success('Berhasil', 'Prodi Berhasil Diubah');
             return redirect()->route('prodi.index');
         } else {
@@ -278,6 +281,7 @@ class ProdiController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data prodi ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Prodi Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Prodi gagal dihapus');

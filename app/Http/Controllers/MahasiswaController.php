@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ActivityLog;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMahasiswaRequest;
@@ -217,6 +218,7 @@ class MahasiswaController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data mahasiswa: <b>' . $request->name . '</b>');
             Alert::success('Berhasil', 'Mahasiswa Berhasil Ditambahkan');
             return redirect()->route('mahasiswa.index');
         } else {
@@ -294,6 +296,7 @@ class MahasiswaController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data mahasiswa: <b>' . $request->name . '</b>');
             Alert::success('Berhasil', 'Mahasiswa Berhasil Diubah');
             return redirect()->route('mahasiswa.index');
         } else {
@@ -326,6 +329,7 @@ class MahasiswaController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data mahasiswa ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Mahasiswa Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Mahasiswa gagal dihapus');

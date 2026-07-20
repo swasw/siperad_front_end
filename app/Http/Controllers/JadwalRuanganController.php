@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\JadwalRuangan;
+use App\Models\ActivityLog;
 use App\Http\Requests\StoreJadwalRuanganRequest;
 use App\Http\Requests\UpdateJadwalRuanganRequest;
 use App\Models\Angkatan;
@@ -722,6 +723,7 @@ class JadwalRuanganController extends BaseController
         curl_close($curl);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan jadwal ruangan: <b>' . $request->mata_kuliah . '</b>');
             Alert::success('Berhasil', 'Jadwal Ruangan Berhasil Ditambahkan');
             return redirect()->route('jadwal-ruangan.index');
         } else {
@@ -800,6 +802,7 @@ class JadwalRuanganController extends BaseController
         curl_close($curl);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah jadwal ruangan: <b>' . $request->mata_kuliah . '</b>');
             Alert::success('Berhasil', 'Jadwal Ruangan Berhasil Diupdate');
             return redirect()->route('jadwal-ruangan.index');
         } else {
@@ -832,6 +835,7 @@ class JadwalRuanganController extends BaseController
         curl_close($curl);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus jadwal ruangan ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Jadwal Ruangan Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Jadwal Ruangan gagal dihapus');
@@ -869,6 +873,7 @@ class JadwalRuanganController extends BaseController
         curl_close($curl);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus <b>semua</b> jadwal ruangan');
             Alert::success('Berhasil', 'Semua Jadwal Ruangan Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Gagal menghapus semua jadwal ruangan');

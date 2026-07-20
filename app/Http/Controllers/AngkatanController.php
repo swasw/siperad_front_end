@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreAngkatanRequest;
@@ -175,6 +176,7 @@ class AngkatanController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data angkatan: <b>' . $request->angkatan . '</b>');
             Alert::success('Berhasil', 'Angkatan Berhasil Ditambahkan');
             return redirect()->route('angkatan.index');
         } else {
@@ -239,6 +241,7 @@ class AngkatanController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data angkatan: <b>' . $request->angkatan . '</b>');
             Alert::success('Berhasil', 'Angkatan Berhasil Diubah');
             return redirect()->route('angkatan.index');
         } else {
@@ -270,6 +273,7 @@ class AngkatanController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data angkatan ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Angkatan Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Angkatan gagal dihapus');

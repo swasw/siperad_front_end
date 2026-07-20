@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\NamaDosen;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreNamaDosenRequest;
@@ -227,6 +228,7 @@ class NamaDosenController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data dosen: <b>' . $request->nama_dosen . '</b>');
             Alert::success('Berhasil', 'Dosen Berhasil Ditambahkan');
             return redirect()->route('dosen.index');
         } else {
@@ -292,6 +294,7 @@ class NamaDosenController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data dosen: <b>' . $request['nama_dosen'] . '</b>');
             Alert::success('Berhasil', 'Dosen Berhasil Diubah');
             return redirect()->route('dosen.index');
         } else {
@@ -324,6 +327,7 @@ class NamaDosenController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data dosen ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Dosen Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Gagal menghapus dosen');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\MataKuliah;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreMataKuliahRequest;
@@ -108,6 +109,7 @@ class MataKuliahController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data mata kuliah: <b>' . $request->mata_kuliah . '</b>');
             Alert::success('Berhasil', 'Mata Kuliah Berhasil Ditambahkan');
             return redirect()->route('matkul.index');
         } else {
@@ -224,6 +226,7 @@ class MataKuliahController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data mata kuliah: <b>' . $request->mata_kuliah . '</b>');
             Alert::success('Berhasil', 'Mata Kuliah Berhasil Diubah');
             return redirect()->route('matkul.index');
         } else {
@@ -256,6 +259,7 @@ class MataKuliahController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data mata kuliah ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Mata Kuliah Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Mata Kuliah gagal dihapus');
