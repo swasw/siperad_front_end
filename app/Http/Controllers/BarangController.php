@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use App\Models\Barang;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests\StoreBarangRequest;
@@ -170,6 +171,7 @@ class BarangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data alat: <b>' . $request->nama_barang . '</b>');
             Alert::success('Berhasil', 'Barang Berhasil Ditambahkan');
             return redirect()->route('barang.index');
         } else {
@@ -323,6 +325,7 @@ class BarangController extends BaseController
         curl_close($client);
 
         if (in_array($httpCode, [200, 202])) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data alat: <b>' . $request->nama_barang . '</b>');
             Alert::success('Berhasil', 'Barang Berhasil Diubah');
             return redirect()->route('barang.index');
         } else {
@@ -372,6 +375,7 @@ class BarangController extends BaseController
         curl_close($client);
 
         if (in_array($httpCode, [200, 202, 204])) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data alat ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Barang Berhasil Dihapus');
         } else {
             $error = json_decode($response, true);

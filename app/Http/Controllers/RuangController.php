@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Ruang;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 
 class RuangController extends BaseController
 {
@@ -122,6 +123,7 @@ class RuangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data ruang: <b>' . $request->nama_ruang . '</b>');
             Alert::success('Berhasil', 'Ruangan Berhasil Ditambahkan');
             return redirect()->route('ruang.index');
         } else {
@@ -215,6 +217,7 @@ class RuangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data ruang: <b>' . $request->nama_ruang . '</b>');
             Alert::success('Berhasil', 'Ruangan Berhasil Diubah');
             return redirect()->route('ruang.index');
         } else {
@@ -247,6 +250,7 @@ class RuangController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data ruang ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Ruangan Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Ruangan gagal dihapus');

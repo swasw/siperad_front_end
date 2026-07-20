@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Models\ActivityLog;
 
 class InputMultipleController extends BaseController
 {
@@ -357,6 +358,8 @@ class InputMultipleController extends BaseController
                     ];
                 }
             }
+
+            ActivityLog::logAction(auth()->user()->name, 'Melakukan import file excel untuk Input Multiple Data');
 
             return view('admin.input-multiple.results', [
                 'title' => 'Hasil Upload',

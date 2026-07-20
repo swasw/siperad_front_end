@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Jam;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Models\ActivityLog;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreJamRequest;
 use App\Http\Requests\UpdateJamRequest;
@@ -175,6 +176,7 @@ class JamController extends BaseController
         curl_close($client);
 
         if ($httpCode == 201) {
+            ActivityLog::logAction(auth()->user()->name, 'Menambahkan data jam: <b>' . $request->jam . '</b>');
             Alert::success('Berhasil', 'Jam Berhasil Ditambahkan');
             return redirect()->route('jam.index');
         } else {
@@ -241,6 +243,7 @@ class JamController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Mengubah data jam: <b>' . $request->jam . '</b>');
             Alert::success('Berhasil', 'Jam Berhasil Diubah');
             return redirect()->route('jam.index');
         } else {
@@ -273,6 +276,7 @@ class JamController extends BaseController
         curl_close($client);
 
         if ($httpCode == 200) {
+            ActivityLog::logAction(auth()->user()->name, 'Menghapus data jam ID: <b>' . $id . '</b>');
             Alert::success('Berhasil', 'Jam Berhasil Dihapus');
         } else {
             Alert::error('Gagal', 'Jam gagal dihapus');

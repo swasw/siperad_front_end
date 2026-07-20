@@ -227,4 +227,8 @@ Route::middleware(['auth', 'user-access:1'])->group(function () {
     Route::controller(\App\Http\Controllers\NotifikasiController::class)->group(function () {
         Route::get('/riwayat-konfirmasi', 'adminIndex')->name('riwayat-konfirmasi.index');
     });
+
+    Route::controller(\App\Http\Controllers\ActivityLogController::class)->group(function () {
+        Route::get('/activity-log', 'index')->name('activity-log.index');
+    });
 });
