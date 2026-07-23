@@ -1,3 +1,88 @@
+# SIPERAD Frontend
+
+## Panduan Deployment (Railway)
+
+Berikut adalah instruksi panduan langkah demi langkah (kronologis) untuk melakukan deployment project frontend SIPERAD ke Railway:
+
+### 1. Persiapan Repository
+- Pastikan project frontend ini telah di-commit secara penuh dan di-push ke repository GitHub Anda.
+
+### 2. Inisiasi Project di Railway
+- Login ke dashboard [Railway](https://railway.app/).
+- Masuk ke Project yang sama dengan backend (agar lebih mudah di-manage dalam satu environment) atau buat Project baru.
+- Klik **New** > **GitHub Repo** (Deploy from GitHub repo) lalu pilih repository frontend ini.
+
+### 3. Pengaturan Environment Variables (Frontend)
+- Klik pada service frontend yang baru saja di-deploy.
+- Masuk ke tab **Variables**.
+- Tambahkan semua environment variable berikut. Gunakan mode **Raw Editor** agar lebih cepat:
+
+```env
+APP_NAME="SIPERAD-Frontend"
+APP_ENV="production"
+APP_KEY="base64:XyZabc123QwErTyUiOpAsDfGhJkLzXcVbNmM567890Q="
+APP_DEBUG="true"
+APP_URL="https://siperadfrontend-production.up.railway.app"
+
+BACKEND_URL="https://siperadbackend-production.up.railway.app"
+
+DB_CONNECTION="mysql"
+DB_HOST="mysql.railway.internal"
+DB_PORT="3306"
+DB_DATABASE="railway"
+DB_USERNAME="root"
+DB_PASSWORD="oydGVRtMcouUIxUTYupobCPPFCoPBFwe"
+
+LOG_CHANNEL="stack"
+LOG_LEVEL="debug"
+BROADCAST_DRIVER="log"
+CACHE_DRIVER="file"
+FILESYSTEM_DISK="local"
+QUEUE_CONNECTION="sync"
+SESSION_DRIVER="file"
+SESSION_LIFETIME="120"
+SESSION_COOKIE="siperad_frontend_session"
+```
+
+### 4. Pengaturan Build & Start Command
+Frontend SIPERAD dibangun berbasis Laravel (atau menggunakan tooling Laravel Mix/Vite). Pastikan pengaturan build command berjalan dengan baik.
+- Masuk ke tab **Settings** pada service frontend.
+- Scroll ke bagian **Deploy**.
+- **Build Command:** 
+  Secara default Railway (melalui Nixpacks) mendeteksi PHP dan Node. Pastikan instalasi dependensi backend/node modules berjalan.
+  ```bash
+  composer install --no-dev --optimize-autoloader && npm install && npm run build
+  ```
+  *(Catatan: Sesuaikan perintah `npm run build` dengan konfigurasi bundler aset jika Anda menggunakan Vite atau Mix)*
+- **Start Command:**
+  Biarkan default atau gunakan:
+  ```bash
+  php artisan serve --host=0.0.0.0 --port=$PORT
+  ```
+
+### 5. Langkah Eksekusi Post-Deployment
+Setelah build berhasil (status deploy: sukses), buka terminal service (tab **Terminal** di Railway) dan jalankan command ini untuk optimalisasi environment:
+
+1. **Bersihkan config cache sebelumnya:**
+   ```bash
+   php artisan config:clear
+   php artisan cache:clear
+   php artisan route:clear
+   ```
+2. **Cache config baru (sangat disarankan di produksi):**
+   ```bash
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+
+### 6. Verifikasi
+- Buka custom domain Railway untuk frontend yang telah di-generate, contoh: `https://siperadfrontend-production.up.railway.app`.
+- Lakukan percobaan login atau load data dari backend untuk memastikan integrasi API ke backend URL `https://siperadbackend-production.up.railway.app` berhasil.
+- Jika tampilan CSS/JS tidak termuat, pastikan command `npm run build` (vite) sudah masuk dalam step build command Railway.
+
+---
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
@@ -64,6 +149,3 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-# siperad_front_end
-SIPERAD Front End Folder
